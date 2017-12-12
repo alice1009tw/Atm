@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private final int REQUEST_LOGIN = 102;
+    private final int REQUEST_INFO = 105;
     boolean logon = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +41,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_LOGIN){
+        switch (requestCode){
+        case REQUEST_LOGIN:
             if(resultCode == RESULT_OK){
                 String userid = data.getStringExtra("LOGIN_USERID");
-                String pw = data.getStringExtra("LOGIN_PASSWD");
-                Log.d("RESULT", userid + "/" + pw);
+                Toast.makeText(this, "Login userid:" + userid, Toast.LENGTH_LONG).show();
+                getSharedPreferences("atm", MODE_PRIVATE)
+                        .edit()
+                        .putString("USERID", userid)
+                        .apply();
             }else {
                 finish();
             }
+            break;
+        case REQUEST_INFO:
+            if(resultCode == RESULT_OK){
+                String name = data.getStringExtra("INFO_NAME");
+                String phone = data.getStringExtra("INFO_PHONE");
+                Toast.makeText(this, "Nickname:" + name, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Phone:" + phone, Toast.LENGTH_LONG).show();
+            }
+            break;
         }
+
     }
 
     @Override
