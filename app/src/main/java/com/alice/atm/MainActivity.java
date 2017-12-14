@@ -13,17 +13,17 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private final int REQUEST_LOGIN = 102;
-    private final int REQUEST_INFO = 105;
+    private final static int REQUEST_LOGIN = 102;
+    private final static int REQUEST_INFO = 105;
     boolean logon = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(!logon){
+        if(!logon) {
             Intent intent = new Intent(this, LoginActivity.class);
-//            startActivity(intent);
             startActivityForResult(intent, REQUEST_LOGIN);
+//            startActivity(intent);
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent1 = new Intent(MainActivity.this, UserInfoActivity.class);
+                startActivityForResult(intent1, REQUEST_INFO);
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
     }
@@ -56,10 +58,17 @@ public class MainActivity extends AppCompatActivity {
             break;
         case REQUEST_INFO:
             if(resultCode == RESULT_OK){
+
                 String name = data.getStringExtra("INFO_NAME");
                 String phone = data.getStringExtra("INFO_PHONE");
                 Toast.makeText(this, "Nickname:" + name, Toast.LENGTH_LONG).show();
                 Toast.makeText(this, "Phone:" + phone, Toast.LENGTH_LONG).show();
+                getSharedPreferences("userinfo", MODE_PRIVATE)
+                        .edit()
+                        .putString("NICKNAME", name)
+                        .putString("PHONE", phone)
+                        .apply();
+
             }
             break;
         }
