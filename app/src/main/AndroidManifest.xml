@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".UserInfoActivity" />
-        <activity android:name=".Ch8Activity"></activity>
+        <activity android:name=".Ch8Activity" />
+        <activity android:name=".AddrActivity" />
+        <activity android:name=".CityActivity"></activity>
     </application>
 
 </manifest>

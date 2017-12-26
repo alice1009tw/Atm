@@ -7,4 +7,25 @@
         <item>17</item>
         <item>18</item>
     </string-array>
+    <string-array name="country">
+        <item>基隆市</item>
+        <item>新北市</item>
+        <item>台北市</item>
+    </string-array>
+    <string-array name="addr1">
+        <item>中正區</item>
+        <item>暖暖區</item>
+        <item>八堵區</item>
+    </string-array>
+    <string-array name="addr2">
+        <item>永和區</item>
+        <item>板橋區</item>
+        <item>新莊區</item>
+    </string-array>
+    <string-array name="addr3">
+        <item>信義區</item>
+        <item>大安區</item>
+        <item>士林區</item>
+    </string-array>
+
 </resources>
