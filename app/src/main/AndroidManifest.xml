@@ -23,7 +23,7 @@
         <activity android:name=".UserInfoActivity" />
         <activity android:name=".Ch8Activity" />
         <activity android:name=".AddrActivity" />
-        <activity android:name=".CityActivity"></activity>
+        <activity android:name=".CityActivity" />
     </application>
 
 </manifest>
